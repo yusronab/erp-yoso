@@ -1,6 +1,7 @@
 "use client";
 
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { SyntheticEvent, useState } from 'react';
 import { FaEdit } from "react-icons/fa"
 
@@ -18,6 +19,8 @@ const Modal = ({
         fontColor: '',
     });
 
+    const router = useRouter();
+
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setData({ ...data, [e.target.name]: e.target.value })
     }
@@ -32,6 +35,7 @@ const Modal = ({
             .finally(() => {
                 setIsLoading(false);
                 setIsModalOpen(false);
+                router.refresh();
             })
     }
 
@@ -45,6 +49,7 @@ const Modal = ({
             .finally(() => {
                 setIsLoading(false);
                 setIsModalOpen(false);
+                router.refresh();
             })
     }
 
