@@ -44,10 +44,7 @@ const Table = ({ data }: { data: any[] }) => {
         data (difilter berdasarkan ${data.length} total data)`
         : `Menampilkan ${startEntry} sampai ${endEntry} dari ${totalData} data`;
 
-    useEffect(() => {
-        setFilteredData(data);
-        console.log('status', data);
-    }, [data])
+    useEffect(() => setFilteredData(data), [data])
 
     return (
         <div className="py-5">
