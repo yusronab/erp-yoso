@@ -1,6 +1,8 @@
 import TableCreate from "./table";
 import prisma from "../../../lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 const getUkuran = async () => {
     const res = await prisma.ukuran.findMany({
         select: {

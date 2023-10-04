@@ -3,6 +3,8 @@ import prisma from "../../lib/prisma";
 import ModalCreate from "./create";
 import Table from "./table";
 
+export const dynamic = "force-dynamic";
+
 const getFormulaMain = async () => {
     try {
         const res = await prisma.formulaUtama.findMany({

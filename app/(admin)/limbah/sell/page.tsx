@@ -4,6 +4,8 @@ import HeadingDetail from "@/components/HeadingDetail";
 import TableInventory from "@/components/TableInventory";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+
 const getDatas = async () => {
     try {
         const res = await prisma.limbahJual.findMany({

@@ -1,9 +1,8 @@
 "use client";
 
-import axios from "axios";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 
 const ProfilePage = () => {
     const { data: session, status, update } = useSession();

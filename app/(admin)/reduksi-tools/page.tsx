@@ -1,8 +1,9 @@
 import prisma from "../../lib/prisma";
 import HeadingDetail from "@/components/HeadingDetail";
-import ModalInventory from "@/components/ModalInventory";
 import Table from "./table";
 import ModalCreate from "./modal";
+
+export const dynamic = "force-dynamic";
 
 const getDatas = async () => {
     try {

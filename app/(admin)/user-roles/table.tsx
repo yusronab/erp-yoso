@@ -4,6 +4,7 @@ import DeleteModal from "@/components/DeleteModal";
 import PaginationBar from "@/components/PaginationBar";
 import PerPageSelect from "@/components/PerPageSelect";
 import SearchBar from "@/components/SearchBar";
+import moment from "moment";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
@@ -45,9 +46,7 @@ const Table = ({ data }: { data: any[] }) => {
         data (difilter berdasarkan ${data.length} total data)`
         : `Menampilkan ${startEntry} sampai ${endEntry} dari ${totalData} data`;
 
-    useEffect(() => {
-        setFilteredData(data);
-    }, [data])
+    useEffect(() => setFilteredData(data), [data])
 
     return (
         <div className="py-5">
@@ -75,7 +74,7 @@ const Table = ({ data }: { data: any[] }) => {
                             <td>{row.code}</td>
                             <td>{row.name}</td>
                             <td>{row.description}</td>
-                            <td>{row.updatedAt}</td>
+                            <td>{moment(row.updatedAt).locale('id').format('LL')}</td>
                             <td className="flex gap-3 justify-center items-center">
                                 <Link
                                     href={`/user-roles/${row.id}`}

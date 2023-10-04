@@ -6,8 +6,7 @@ const PaginationBar = ({
     return (
         <div className="flex">
             <button
-                className="py-2 px-4 btn rounded-none rounded-l-md bg-[#4e73df] text-white
-                hover:bg-[#3b57ab]"
+                className="py-2 px-4 btn btn-sm rounded-none rounded-l-md text-black mr-2"
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 0}
             >
@@ -32,8 +31,7 @@ const PaginationBar = ({
                 </div>
             ))}
             <button
-                className="py-2 px-4 btn rounded-none rounded-r-md bg-[#4e73df] text-white
-                hover:bg-[#3b57ab]"
+                className="py-2 px-4 btn btn-sm rounded-none rounded-r-md text-black ml-2"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages - 1}
             >

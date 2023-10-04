@@ -3,6 +3,8 @@ import Link from "next/link";
 import prisma from "../../lib/prisma";
 import Table from "./table";
 
+export const dynamic = "force-dynamic";
+
 const getDatas = async () => {
     try {
         const res = await prisma.product.findMany({

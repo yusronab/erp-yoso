@@ -1,6 +1,8 @@
 import Form from "./form";
 import prisma from "../../../lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 const getUkuran = async () => {
     try {
         const res = await prisma.ukuran.findMany({

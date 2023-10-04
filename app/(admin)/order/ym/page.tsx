@@ -3,6 +3,8 @@ import FormOrder from "./form"
 import prisma from "../../../lib/prisma"
 import { generateCode } from "@/utils/helper";
 
+export const dynamic = "force-dynamic";
+
 const countData = async () => {
     const lastDay = Date.now() - 24 * 60 * 60 * 1000;
     const lastDayISOString = new Date(lastDay).toISOString();

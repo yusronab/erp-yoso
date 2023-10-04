@@ -4,6 +4,8 @@ import type { Subcont } from "@prisma/client";
 import CustomModal from "@/components/CustomModal";
 import HeadingDetail from "@/components/HeadingDetail";
 
+export const dynamic = "force-dynamic";
+
 const getDatas = async () => {
   try {
     const res = await prisma.subcont.findMany({

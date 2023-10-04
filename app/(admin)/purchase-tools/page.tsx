@@ -1,6 +1,8 @@
 import prisma from "../../lib/prisma";
 import Content from "./content";
 
+export const dynamic = "force-dynamic";
+
 const getItems = async () => {
     const result = await prisma.purchaseTools.findMany({
         orderBy: { updatedAt: 'desc' },

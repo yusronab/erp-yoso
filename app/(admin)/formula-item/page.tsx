@@ -1,8 +1,9 @@
 import HeadingDetail from "@/components/HeadingDetail";
-import { FormulaItem } from "@prisma/client";
 import prisma from "../../lib/prisma";
 import ModalCreate from "./create";
 import Table from "./table";
+
+export const dynamic = "force-dynamic";
 
 const getItems = async () => {
     try {

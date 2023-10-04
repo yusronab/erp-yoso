@@ -4,6 +4,8 @@ import HeadingDetail from "@/components/HeadingDetail";
 import TableInventory from "@/components/TableInventory";
 import ModalInventory from "@/components/ModalInventory";
 
+export const dynamic = "force-dynamic";
+
 const getDatas = async () => {
   try {
     const res = await prisma.barangSetengahJadi.findMany({

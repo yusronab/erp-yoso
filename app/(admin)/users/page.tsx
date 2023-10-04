@@ -2,6 +2,8 @@ import type { User } from "@prisma/client";
 import Table from "./table";
 import prisma from "../../lib/prisma";
 
+export const dynamic = "force-dynamic";
+
 const getDatas = async () => {
     try {
         const res = await prisma.user.findMany({

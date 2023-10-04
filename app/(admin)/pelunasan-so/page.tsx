@@ -1,6 +1,8 @@
 import prisma from "../../lib/prisma";
 import Table from "./table";
 
+export const dynamic = "force-dynamic";
+
 const getItems = async () => {
     const result = await prisma.order.findMany({
         orderBy: { updatedAt: 'desc' },

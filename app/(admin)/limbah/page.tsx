@@ -7,6 +7,8 @@ import ModalQrcode from "./modal";
 import Link from "next/link";
 import ModalSell from "./sell";
 
+export const dynamic = "force-dynamic";
+
 const getDatas = async () => {
   try {
     const res = await prisma.limbah.findMany({
