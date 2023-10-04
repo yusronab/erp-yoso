@@ -1,0 +1,365 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id           Int       @id @default(autoincrement())
+  name         String
+  code         String
+  description  String
+  moduleAccess String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+  user         User[]
+}
+
+model User {
+  id            Int             @id @default(autoincrement())
+  name          String
+  email         String?         @unique
+  emailVerified DateTime?
+  bod           DateTime?
+  password      String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?
+  role          Role            @relation(fields: [roleId], references: [id])
+  status        Status          @relation(fields: [statusId], references: [id])
+  roleId        Int
+  statusId      Int
+  order         Order[]
+  barangSubcont BarangSubcont[]
+  purchaseTools PurchaseTools[]
+}
+
+model Status {
+  id        Int       @id @default(autoincrement())
+  name      String
+  fkey      Int       @default(1)
+  module    String?
+  bgColor   String    @default("#037721")
+  fontColor String    @default("#ffffff")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  user      User[]
+}
+
+model Customer {
+  id        Int       @id @default(autoincrement())
+  name      String
+  address   String
+  city      String
+  phone     String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  order     Order[]
+}
+
+model Ukuran {
+  id        Int        @id @default(autoincrement())
+  name      String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+  material  Material[]
+  product   Product[]
+}
+
+model Subcont {
+  id            Int             @id @default(autoincrement())
+  name          String
+  address       String
+  city          String
+  phone         String
+  fax           String
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deletedAt     DateTime?
+  barangSubcont BarangSubcont[]
+}
+
+model Suplier {
+  id        Int        @id @default(autoincrement())
+  name      String
+  address   String
+  fax       String
+  phone     String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  deletedAt DateTime?
+  material  Material[]
+}
+
+model Divisi {
+  id              Int               @id @default(autoincrement())
+  name            String
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  deletedAt       DateTime?
+  formulaProduksi FormulaProduksi[]
+}
+
+model Material {
+  id          Int       @id @default(autoincrement())
+  name        String
+  code        String?
+  size        String
+  price       Int
+  totalStock  Int
+  minPurchase Int
+  isStatus    Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  suplier     Suplier   @relation(fields: [suplierId], references: [id])
+  suplierId   Int
+  ukuran      Ukuran    @relation(fields: [ukuranId], references: [id])
+  ukuranId    Int
+}
+
+model FormulaItem {
+  id              Int               @id @default(autoincrement())
+  name            String
+  price           Int
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  deletedAt       DateTime?
+  formulaProduksi FormulaProduksi[]
+  subItem         SubItem[]
+}
+
+model FormulaProduksi {
+  id            Int         @id @default(autoincrement())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  deletedAt     DateTime?
+  formulaItemId Int
+  formulaItem   FormulaItem @relation(fields: [formulaItemId], references: [id])
+  divisiId      Int
+  divisi        Divisi      @relation(fields: [divisiId], references: [id])
+}
+
+model FormulaUtama {
+  id        Int       @id @default(autoincrement())
+  name      String
+  price     Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  subItem   SubItem[]
+}
+
+model SubItem {
+  id             Int          @id @default(autoincrement())
+  amount         Int?         @default(1)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  deletedAt      DateTime?
+  formulaItemId  Int
+  formulaItem    FormulaItem  @relation(fields: [formulaItemId], references: [id])
+  formulaUtamaId Int
+  formulaUtama   FormulaUtama @relation(fields: [formulaUtamaId], references: [id])
+}
+
+model BarangJadi {
+  id        Int       @id @default(autoincrement())
+  name      String
+  number    String
+  qty       Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model BarangSetengahJadi {
+  id        Int       @id @default(autoincrement())
+  name      String
+  number    String
+  qty       Int
+  isStatus  Int?      @default(0)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Tools {
+  id             Int              @id @default(autoincrement())
+  name           String
+  code           String
+  desc           String
+  amount         Int
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  deletedAt      DateTime?
+  toolsReduction ToolsReduction[]
+}
+
+model ToolsReduction {
+  id        Int       @id @default(autoincrement())
+  name      String
+  desc      String
+  amount    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  toolsId   Int
+  tools     Tools     @relation(fields: [toolsId], references: [id])
+}
+
+model Limbah {
+  id        Int       @id @default(autoincrement())
+  desc      String
+  total     Int
+  amount    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model LimbahJual {
+  id        Int       @id @default(autoincrement())
+  desc      String
+  price     Int
+  amount    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Product {
+  id          Int        @id @default(autoincrement())
+  code        String
+  name        String
+  price       Int
+  productType Int
+  formulaId   Int
+  isActive    Int?       @default(1)
+  priceX      Int?
+  statusCheck Int?       @default(0)
+  satuanId    Int
+  satuan      Ukuran     @relation(fields: [satuanId], references: [id])
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  deletedAt   DateTime?
+  discount    Discount[]
+}
+
+model Discount {
+  id        Int       @id @default(autoincrement())
+  name      String
+  minOrder  Int       @default(1)
+  value     Int
+  typeValue Int
+  desc      String
+  startDate DateTime
+  endDate   DateTime
+  isActive  Int       @default(1)
+  productId Int
+  product   Product   @relation(fields: [productId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+model Order {
+  id            Int       @id @default(autoincrement())
+  code          String
+  customerId    Int?
+  userId        Int
+  poc           String?
+  detail        String
+  total         Int
+  paymentMethod Int?      @default(1)
+  paymentStatus Int?      @default(1)
+  tenor         Int?      @default(0)
+  tempo         Int?      @default(0)
+  isStatus      Int?      @default(1)
+  reciver       String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  customer      Customer? @relation(fields: [customerId], references: [id])
+  user          User      @relation(fields: [userId], references: [id])
+  sjso          Sjso[]
+}
+
+model Sjso {
+  id            Int       @id @default(autoincrement())
+  code          String
+  orderId       Int
+  tanggalKirim  DateTime
+  tanggalTerima DateTime?
+  isStatus      Int?      @default(1)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  order         Order     @relation(fields: [orderId], references: [id])
+}
+
+model BarangSubcont {
+  id            Int                   @id @default(autoincrement())
+  code          String
+  subcontId     Int
+  userId        Int
+  total         Int
+  paymentMethod Int?                  @default(1)
+  paymentStatus Int?                  @default(1)
+  tenor         Int?
+  tempo         Int?
+  refSj         String?
+  isStatus      Int?                  @default(1)
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  deletedAt     DateTime?
+  subcont       Subcont               @relation(fields: [subcontId], references: [id])
+  user          User                  @relation(fields: [userId], references: [id])
+  detail        BarangSubcontDetail[]
+}
+
+model BarangSubcontDetail {
+  id              Int           @id @default(autoincrement())
+  barangSubcontId Int
+  produksiId      Int?
+  productId       Int
+  productName     String
+  bayar           Int
+  qty             Int
+  satuan          String
+  subtotal        Int
+  isStatus        Int?          @default(1)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  deletedAt       DateTime?
+  barangSubcont   BarangSubcont @relation(fields: [barangSubcontId], references: [id])
+}
+
+model PurchaseTools {
+  id            Int       @id @default(autoincrement())
+  code          String
+  supplier      String
+  userId        Int
+  detail        String
+  ppn           Int
+  paymentMethod Int?      @default(1)
+  paymentStatus Int?      @default(1)
+  total         Int
+  tenor         Int?
+  tempo         Int?
+  reffSj        String?
+  isStatus      Int?      @default(1)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
+  user          User      @relation(fields: [userId], references: [id])
+}
