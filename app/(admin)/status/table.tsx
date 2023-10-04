@@ -46,6 +46,7 @@ const Table = ({ data }: { data: any[] }) => {
 
     useEffect(() => {
         setFilteredData(data);
+        console.log('status', data);
     }, [data])
 
     return (
