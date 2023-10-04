@@ -4,6 +4,8 @@ import Table from "./table";
 import Modal from "./modal";
 import HeadingDetail from "@/components/HeadingDetail";
 
+export const dynamic = "force-dynamic";
+
 const getDatas = async () => {
     try {
         const res = await prisma.status.findMany({
