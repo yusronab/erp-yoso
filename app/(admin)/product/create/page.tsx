@@ -21,8 +21,8 @@ const CreatePage = async () => {
 
     return (
         <div className="flex justify-center items-center">
-            <div className="card card-compact bg-base-100 shadow-xl">
-                <div className="card-body">
+            <div className="card card-compact bg-base-100 shadow-xl my-5">
+                <div className="card-body p-5">
                     <div className="card-title">Tambah Produk</div>
                     {listUkuran && <Form satuanUkuran={listUkuran} />}
                 </div>

@@ -168,8 +168,11 @@ const Table = ({
                             <td>{row.size} {row.ukuran.name}</td>
                             <td>{row.minPurchase}</td>
                             <td>{row.totalStock}</td>
-                            <td className={row.isStatus ? 'text-success' : 'text-error'}>
-                                {row.isStatus ? 'Tersedia' : 'Tidak tersedia'}
+                            <td>
+                                <div className={`badge ${row.isStatus ? 'badge-success' : 'badge-error'}
+                                `}>
+                                    {row.isStatus ? 'Tersedia' : 'Tidak tersedia'}
+                                </div>
                             </td>
                             <td className="flex gap-3 justify-center items-center">
                                 <UpdateModal

@@ -81,7 +81,7 @@ const CustomModal = ({
                             </div>
                         ))}
                         <div className="modal-action">
-                            <button type="button" className="btn" onClick={modalHandler}>Tutup</button>
+                            <button type="button" className="btn capitalize" onClick={modalHandler}>Tutup</button>
                             <button
                                 type="submit"
                                 className="btn btn-primary capitalize"

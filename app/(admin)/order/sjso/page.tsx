@@ -1,5 +1,5 @@
 import prisma from "../../../lib/prisma";
-import Content from "./content";
+import Table from "./table";
 
 export const dynamic = "force-dynamic";
 
@@ -36,11 +36,14 @@ const PageSJSO = async () => {
             <div className="text-sm breadcrumbs bg-gray-100 w-fit p-3 mb-5 rounded-md">
                 <ul>
                     <li><a>Dashboard</a></li>
-                    <li className="text-[#4e73df]">SJSO</li>
+                    <li className="text-[#4e73df]">Daftar Surat Jalan</li>
                 </ul>
             </div>
+            <div className="flex justify-between items-center bg-gray-100 rounded-md p-3">
+                <h3 className="font-bold capitalize">data penjualan</h3>
+            </div>
 
-            {orders && <Content data={orders} />}
+            {orders && <Table data={orders} />}
         </div>
     );
 };

@@ -1,5 +1,7 @@
 "use client"
 
+import moment from "moment";
+import 'moment/locale/id';
 import { useEffect, useState } from "react";
 import DeleteModal from "./DeleteModal";
 import ModalInventory from "./ModalInventory";
@@ -55,9 +57,7 @@ const TableInventory = ({
         data (difilter berdasarkan ${data.length} total data)`
         : `Menampilkan ${startEntry} sampai ${endEntry} dari ${totalData} data`;
 
-    useEffect(() => {
-        setFilteredData(data);
-    }, [data])
+    useEffect(() => setFilteredData(data), [data])
 
     return (
         <div>
@@ -85,8 +85,9 @@ const TableInventory = ({
                             <td>{index + 1}</td>
                             {heading.map((head, idx) => (
                                 <td key={idx}>
-                                    {head.id === 'updatedAt' ? 
-                                    item[head.id]?.toLocaleString() : item[head.id]?.toString()}
+                                    {head.id === 'updatedAt' ?
+                                        moment(item[head.id]).locale('id').format('LL')
+                                        : item[head.id]?.toString()}
                                 </td>
                             ))}
                             <td className="flex gap-3 justify-center">

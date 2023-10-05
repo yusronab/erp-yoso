@@ -95,7 +95,7 @@ const Form = ({ satuanUkuran }: { satuanUkuran: any[] }) => {
                     <option value="2">Utama</option>
                 </select>
             </div>
-            <div className="mb-4">
+            <div className="flex gap-2 items-center mb-4">
                 <label>Diskon</label>
                 <input
                     type="checkbox"
@@ -186,7 +186,7 @@ const Form = ({ satuanUkuran }: { satuanUkuran: any[] }) => {
                     disabled={isLoading}
                 >
                     {isLoading ? <span className="loading loading-spinner text-white"></span>
-                        : 'tambahkan data'}
+                        : 'tambahkan'}
                 </button>
             </div>
         </form>

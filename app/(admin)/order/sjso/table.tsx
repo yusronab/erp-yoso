@@ -3,17 +3,17 @@
 import PaginationBar from "@/components/PaginationBar";
 import PerPageSelect from "@/components/PerPageSelect";
 import SearchBar from "@/components/SearchBar";
-import { rupiah } from "@/utils/helper";
 import { table } from "@/utils/table";
 import { motion } from "framer-motion";
+import moment from "moment";
 import { Fragment, useEffect, useState } from "react";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
-import { MdInsertDriveFile } from "react-icons/md";
+import 'moment/locale/id';
 
 const Table = ({
-    data, onRowClick
+    data
 }: {
-    data: any[], onRowClick: (row: any) => void
+    data: any[]
 }) => {
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(0);
@@ -62,7 +62,7 @@ const Table = ({
                 />
                 <SearchBar onSearch={handleSearch} />
             </div>
-            <table className="table border">
+            <table className="table border table-zebra">
                 <thead className="bg-[#4e73df] text-white">
                     <tr>
                         <th>#</th>
@@ -112,29 +112,10 @@ const Table = ({
                                         }}
                                         className="flex overflow-hidden"
                                     >
-                                        <p>: {row.updatedAt.toLocaleString()}</p>
+                                        <p>: {moment(row.updatedAt).locale('id').format('LLL')}</p>
                                     </motion.div>
                                 </td>
                             </tr>
-                            {/* <motion.tr
-                                animate={{
-                                    height: isOpenRow ? 'fit-content' : 0,
-                                    display: isOpenRow ? 'table-row' : 'none',
-                                }}
-                                className="overflow-hidden bg-white"
-                            >
-                                <td colSpan={7} className="flex gap-5 items-center">
-                                    Aksi: 
-                                    <button
-                                        className="tooltip btn btn-outline btn-primary btn-sm capitalize
-                                        font-light text-sm ml-5"
-                                        data-tip="lihat detail"
-                                        onClick={() => onRowClick(row)}
-                                    >
-                                        <MdInsertDriveFile />
-                                    </button>
-                                </td>
-                            </motion.tr> */}
                         </Fragment>
                     ))}
                 </tbody>

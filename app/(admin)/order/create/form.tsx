@@ -166,7 +166,7 @@ const FormOrder = ({
             .catch(err => console.log(err.response.data.message ?? 'Error saat POST berlangsung'))
             .finally(() => {
                 setIsLoading(false);
-                // router.push('/order');
+                router.push('/order');
             });
     };
 
@@ -187,35 +187,20 @@ const FormOrder = ({
     return (
         <div className="p-3 border">
             <div className="grid grid-cols-2 gap-4">
-                <FilterSelect
-                    options={customer}
-                    onSelectFilter={handleFilter}
-                    table="suplier"
-                />
-                <div className="form-control mb-4">
+                <div className="form-control">
+                    <label>Kontraktor</label>
+                    <FilterSelect
+                        options={customer}
+                        onSelectFilter={handleFilter}
+                        table="suplier"
+                    />
+                </div>
+                <div className="form-control">
                     <label>Nomor SO</label>
                     <input
                         type="text"
                         name="code"
                         value={code}
-                        readOnly
-                        className="input input-bordered input-disabled"
-                    />
-                </div>
-                <div className="form-control mb-4">
-                    <label>Tanggal</label>
-                    <input
-                        type="text"
-                        value={new Date().toLocaleString()}
-                        readOnly
-                        className="input input-bordered input-disabled"
-                    />
-                </div>
-                <div className="form-control mb-4">
-                    <label>Mata Uang</label>
-                    <input
-                        type="text"
-                        value="(IDR) Rupiah"
                         readOnly
                         className="input input-bordered input-disabled"
                     />
@@ -234,6 +219,24 @@ const FormOrder = ({
                     value={otherData.reciver}
                     onChange={handleChange}
                 />
+                <div className="form-control">
+                    <label>Tanggal</label>
+                    <input
+                        type="text"
+                        value={new Date().toLocaleString()}
+                        readOnly
+                        className="input input-bordered input-disabled"
+                    />
+                </div>
+                <div className="form-control">
+                    <label>Mata Uang</label>
+                    <input
+                        type="text"
+                        value="(IDR) Rupiah"
+                        readOnly
+                        className="input input-bordered input-disabled"
+                    />
+                </div>
                 <div className="form-control mb-4">
                     <label>Telepon</label>
                     <input
@@ -283,21 +286,23 @@ const FormOrder = ({
                             <tr key={index}>
                                 <td>{row.code ?? 'Kosong'}</td>
                                 <td>{row.name}</td>
-                                <td className="capitalize flex flex-row">
-                                    <button
-                                        className="btn btn-warning btn-sm"
-                                        onClick={() => handleDecrement(row.id)}
-                                    >-
-                                    </button>
-                                    <p className="text-error font-bold">
-                                        {itemStocks[row.id] !== undefined ? itemStocks[row.id] : 0}
-                                        - {row.satuan.name}
-                                    </p>
-                                    <button
-                                        className="btn btn-success btn-sm"
-                                        onClick={() => handleIncrement(row.id)}
-                                    >+
-                                    </button>
+                                <td>
+                                    <div className="capitalize flex flex-row items-center">
+                                        <button
+                                            className="btn btn-warning btn-sm"
+                                            onClick={() => handleDecrement(row.id)}
+                                        >-
+                                        </button>
+                                        <p className="text-error font-bold mx-1">
+                                            {itemStocks[row.id] !== undefined ? itemStocks[row.id] : 0}
+                                            - {row.satuan.name}
+                                        </p>
+                                        <button
+                                            className="btn btn-success btn-sm"
+                                            onClick={() => handleIncrement(row.id)}
+                                        >+
+                                        </button>
+                                    </div>
                                 </td>
                                 <td>{rupiah(row.price * itemStocks[row.id] ?? row.price)}</td>
                             </tr>

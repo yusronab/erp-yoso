@@ -9,7 +9,7 @@ export const POST = async (request: Request) => {
     
     const result = await prisma.tools.create({
         data: {
-            code: generateCode(3, dataCount, 'tlsys'),
+            code: generateCode(3, dataCount + 1, 'tlsys'),
             name: name,
             amount: amount,
             desc: desc,

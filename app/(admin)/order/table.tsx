@@ -73,7 +73,7 @@ const Table = ({
                         <th>Nama Sales</th>
                         <th>Jumlah Total</th>
                         <th>Metode</th>
-                        <th>Status Bayar</th>
+                        <th>Status Pembayaran</th>
                     </tr>
                 </thead>
                 <tbody>

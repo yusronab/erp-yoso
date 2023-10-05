@@ -31,7 +31,7 @@ export const POST = async (request: Request) => {
 
     const product = await prisma.product.create({
         data: {
-            code: generateCode(5, count, 'pym-itm'),
+            code: generateCode(5, count + 1, 'pym-itm'),
             name: body.name,
             price: Number(body.price),
             formulaId: body.formulaId,

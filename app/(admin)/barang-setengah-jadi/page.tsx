@@ -3,8 +3,22 @@ import type { BarangSetengahJadi } from "@prisma/client";
 import HeadingDetail from "@/components/HeadingDetail";
 import TableInventory from "@/components/TableInventory";
 import ModalInventory from "@/components/ModalInventory";
+import { generateCode } from "@/utils/helper";
 
 export const dynamic = "force-dynamic";
+
+const countData = async () => {
+  const lastDay = Date.now() - 24 * 60 * 60 * 1000;
+  const lastDayISOString = new Date(lastDay).toISOString();
+
+  const result = await prisma.barangSetengahJadi.count({
+      where: {
+          createdAt: { gte: lastDayISOString }
+      }
+  })
+
+  return result;
+};
 
 const getDatas = async () => {
   try {
@@ -31,6 +45,7 @@ const getDatas = async () => {
 
 const MainPage = async () => {
   const listData = await getDatas() as BarangSetengahJadi[];
+  const counter = await countData();
 
   const dataExist = listData.filter(item => item.deletedAt === null);
   const dataDeleted = listData.filter(item => item.deletedAt !== null);
@@ -72,9 +87,18 @@ const MainPage = async () => {
     },
   ];
 
+  const a = new Date();
+
+  const year = a.getFullYear().toString().slice(-2);
+  const month = (a.getMonth() + 1).toString().padStart(2, '0');
+  const day = a.getDate().toString().padStart(2, '0');
+
+  const formattedDate = 'BSTJ' + year + month + day;
+  const code = generateCode(6, counter + 1, formattedDate);
+
   const initialState = {
     name: '',
-    number: '',
+    number: code,
     qty: ''
   }
 

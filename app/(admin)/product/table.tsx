@@ -31,7 +31,7 @@ const Table = ({ data }: { data: any[] }) => {
       item.productType === selected?.id
     );
     setFilteredData(filtered);
-    
+
     if (!selected) setFiltering(false);
     if (selected) setFiltering(true);
   };
@@ -41,7 +41,7 @@ const Table = ({ data }: { data: any[] }) => {
       item.name?.toLowerCase().includes(keyword.toLowerCase())
     );
     setFilteredData(filtered);
-    
+
     if (!keyword) setFiltering(false);
     if (keyword) setFiltering(true);
   };
@@ -62,7 +62,7 @@ const Table = ({ data }: { data: any[] }) => {
 
   useEffect(() => {
     setFilteredData(data);
-    
+
     const customDataExcel = data.filter(item => item.deletedAt === null).map(item => ({
       "Id Produk": item.code,
       "Nama Produk": item.name,
@@ -128,8 +128,11 @@ const Table = ({ data }: { data: any[] }) => {
               <td>{row.name}</td>
               <td>{row.satuan.name}</td>
               <td>{rupiah(row.price)}</td>
-              <td className={row.productType === 1 ? 'text-secondary' : 'text-success'}>
-                {row.productType === 1 ? 'Produk item' : 'Produk utama'}
+              <td>
+                <div className={`badge ${row.productType === 1 ? 'badge-secondary' : 'badge-accent'}
+                `}>
+                  {row.productType === 1 ? 'Produk item' : 'Produk utama'}
+                </div>
               </td>
               <td className="flex gap-3 justify-center items-center">
                 <UpdateModal
