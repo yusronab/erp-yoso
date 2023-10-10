@@ -78,8 +78,9 @@ const CreatePage = () => {
                         }
                     }}
                     onUploadError={(error: Error) => {
-                        console.log(`ERROR! ${error.message}`);
+                        console.log(`ERROR! ${error}`);
                     }}
+                    className="text-left"
                 />
 
                 <button className="btn btn-primary capitalize" type="submit">Simpan</button>
