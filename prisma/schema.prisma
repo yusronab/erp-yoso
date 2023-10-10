@@ -39,6 +39,7 @@ model User {
   order         Order[]
   barangSubcont BarangSubcont[]
   purchaseTools PurchaseTools[]
+  company       Company[]
 }
 
 model Status {
@@ -362,4 +363,19 @@ model PurchaseTools {
   updatedAt     DateTime  @updatedAt
   deletedAt     DateTime?
   user          User      @relation(fields: [userId], references: [id])
+}
+
+model Company {
+  id        Int       @id @default(autoincrement())
+  name      String
+  address   String
+  city      String
+  image     String
+  phone     String
+  fax       String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id])
 }
