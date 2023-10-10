@@ -6,6 +6,7 @@ import { UploadButton } from "@uploadthing/react";
 import { OurFileRouter } from "../../../api/uploadthing/core";
 import FormInput from "@/components/FormInput";
 import { SyntheticEvent, useState } from "react";
+import Image from "next/image";
 
 const CreatePage = () => {
     const [body, setBody] = useState({
@@ -13,12 +14,8 @@ const CreatePage = () => {
         address: '',
         city: '',
         phone: '',
-    })
-
-    const [images, setImages] = useState<{
-        fileUrl: string;
-        fileKey: string;
-    }[]>([]);
+        image: '',
+    });
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
@@ -26,7 +23,6 @@ const CreatePage = () => {
         console.log({
             ...body,
             fax: body.phone,
-            image: images.map(item => item.fileUrl)
         });
     };
 
@@ -67,21 +63,27 @@ const CreatePage = () => {
                     onChange={handleChange}
                 />
 
-                <UploadButton<OurFileRouter>
-                    endpoint="imageUploader"
-                    onClientUploadComplete={(res) => {
-                        if (res) {
-                            setImages(res)
-                            const json = JSON.stringify(res)
-                            // Do something with the response
-                            console.log(json);
-                        }
-                    }}
-                    onUploadError={(error: Error) => {
-                        console.log(`ERROR! ${error}`);
-                    }}
-                    className="text-left"
-                />
+                <div className="flex flex-col justify-start items-start gap-1 bordered rounded-md">
+                    <p>Logo perusahaan</p>
+                    <Image
+                        src={body.image}
+                        alt="logo"
+                        className="object-cover w-[100px] h-[100px] rounded-md"
+                    />
+                    <UploadButton<OurFileRouter>
+                        endpoint="imageUploader"
+                        onClientUploadComplete={(res) => {
+                            if (res) {
+                                setBody({ ...body, image: res[0].url })
+                                console.log(res);
+                            }
+                        }}
+                        onUploadError={(error: Error) => {
+                            console.log(`ERROR! ${error}`);
+                        }}
+                    />
+                </div>
+
 
                 <button className="btn btn-primary capitalize" type="submit">Simpan</button>
             </form>
