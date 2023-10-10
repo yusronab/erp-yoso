@@ -68,7 +68,10 @@ const CreatePage = () => {
                     <Image
                         src={body.image}
                         alt="logo"
-                        className="object-cover w-[100px] h-[100px] rounded-md"
+                        placeholder="blur"
+                        width={100}
+                        height={100}
+                        className="object-cover rounded-md"
                     />
                     <UploadButton<OurFileRouter>
                         endpoint="imageUploader"
