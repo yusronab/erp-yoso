@@ -1,7 +1,7 @@
 import moment from "moment";
 import Image from "next/image";
 import 'moment/locale/id';
-import { BiSolidEdit } from "react-icons/bi";
+import Modal from "./modal";
 
 const ListComponent = ({ datas }: { datas: any[] }) => {
     return (
@@ -25,10 +25,7 @@ const ListComponent = ({ datas }: { datas: any[] }) => {
                                 {`Diperbarui : ${moment(item.updatedAt).startOf('hour').fromNow()}`}
                             </p>
                         </div>
-                        <button className="hidden absolute top-0 right-0 p-2 mt-2 mr-2 bg-blue-500
-                        text-white rounded-full group-hover:block">
-                            <BiSolidEdit size={16} />
-                        </button>
+                        <Modal />
                     </div>
                 ))
             ) : (
