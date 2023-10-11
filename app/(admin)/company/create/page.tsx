@@ -83,7 +83,8 @@ const CreatePage = () => {
                         placeholder="blur"
                         width={100}
                         height={100}
-                        className="object-cover rounded-md"
+                        fill
+                        className="object-cover rounded-md mb-3"
                     />
                     <UploadButton<OurFileRouter>
                         endpoint="imageUploader"

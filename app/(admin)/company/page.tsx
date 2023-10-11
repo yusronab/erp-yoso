@@ -1,4 +1,5 @@
 import { authOptions } from "@/app/lib/auth";
+import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link"
 import { redirect } from "next/navigation";
@@ -18,6 +19,11 @@ const getCompany = async () => {
 
   return result;
 };
+
+export const metadata: Metadata = {
+  title: 'Company | Yoso Mekatama',
+  description: 'List user company',
+}
 
 const CompanyPage = async () => {
   const listCompany = await getCompany();
