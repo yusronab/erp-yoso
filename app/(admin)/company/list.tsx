@@ -10,7 +10,7 @@ const ListComponent = ({ datas }: { datas: any[] }) => {
                     <div key={i} className="p-3 rounded-md border border-gray-300 hover:shadow-lg">
                         <div className="flex">
                             <div className="avatar">
-                                <div className="w-8 rounded-full">
+                                <div className="w-8 rounded-full bg-gray-300 object-cover">
                                     <Image src={item.image} alt="logo" style={{ objectFit: "cover" }}/>
                                 </div>
                             </div>
