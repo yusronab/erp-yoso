@@ -7,21 +7,18 @@ export const POST = async (request: Request) => {
     const session = await getServerSession(authOptions);
     const id = session?.user.id;
 
-    // if (!id) return NextResponse.json({ message: 'Invalid user id' }, { status: 401 });
+    if (!id) return NextResponse.json({ message: 'Invalid user id' }, { status: 401 });
 
     const body = await request.json();
 
-    // const result = await prisma.company.create({
-    //     data: {
-    //         ...body,
-    //         userId: id
-    //     }
-    // })
+    const result = await prisma.company.create({
+        data: {
+            ...body,
+            userId: Number(id),
+        }
+    })
 
-    // if (!result) return NextResponse.json({ message: 'Body is bad' }, { status: 400 });
+    if (!result) return NextResponse.json({ message: 'Body is bad' }, { status: 400 });
 
-    return NextResponse.json({
-        ...body,
-        userId: id
-    }, { status: 201 });
+    return NextResponse.json(result, { status: 201 });
 };
