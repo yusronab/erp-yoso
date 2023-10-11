@@ -30,10 +30,7 @@ const CreatePage = () => {
             ...body,
             fax: body.phone,
         })
-            .then(res => {
-                console.log(res.data);
-                router.push('/company');
-            })
+            .then(res => router.push('/company'))
             .catch(err => console.log(err.response.data.message ?? 'Axios post error'))
             .finally(() => setIsLoading(false));
     };
