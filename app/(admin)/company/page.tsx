@@ -21,7 +21,7 @@ const getCompany = async () => {
 };
 
 export const metadata: Metadata = {
-  title: 'Company | Yoso Mekatama',
+  title: 'Yoso Mekatama | Company',
   description: 'List user company',
 }
 

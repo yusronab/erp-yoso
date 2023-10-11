@@ -81,10 +81,10 @@ const CreatePage = () => {
                         src={body.image}
                         alt="logo"
                         placeholder="blur"
+                        loading="lazy"
                         width={100}
                         height={100}
-                        fill
-                        className="object-cover rounded-md mb-3"
+                        style={{ objectFit: "contain", height: "100px" }}
                     />
                     <UploadButton<OurFileRouter>
                         endpoint="imageUploader"
