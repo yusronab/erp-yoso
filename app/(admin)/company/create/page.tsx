@@ -7,8 +7,11 @@ import { OurFileRouter } from "../../../api/uploadthing/core";
 import FormInput from "@/components/FormInput";
 import { SyntheticEvent, useState } from "react";
 import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const CreatePage = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [body, setBody] = useState({
         name: '',
         address: '',
@@ -17,13 +20,22 @@ const CreatePage = () => {
         image: '',
     });
 
+    const router = useRouter();
+
     const handleSubmit = (e: SyntheticEvent) => {
+        setIsLoading(true);
         e.preventDefault();
 
-        console.log({
+        axios.post('/api/company', {
             ...body,
             fax: body.phone,
-        });
+        })
+            .then(res => {
+                console.log(res.data);
+                router.push('/company');
+            })
+            .catch(err => console.log(err.response.data.message ?? 'Axios post error'))
+            .finally(() => setIsLoading(false));
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,8 +99,14 @@ const CreatePage = () => {
                     />
                 </div>
 
-
-                <button className="btn btn-primary capitalize" type="submit">Simpan</button>
+                <button
+                    className="btn btn-primary capitalize mt-5"
+                    type="submit"
+                    disabled={isLoading}
+                >
+                    {isLoading ? <span className="loading loading-spinner text-white"></span>
+                        : 'simpan'}
+                </button>
             </form>
         </div>
     );

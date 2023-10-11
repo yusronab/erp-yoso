@@ -1,12 +1,34 @@
+import { authOptions } from "@/app/lib/auth";
+import { getServerSession } from "next-auth";
 import Link from "next/link"
+import { redirect } from "next/navigation";
+import prisma from "../../lib/prisma";
+import ListComponent from "./list";
 
-const CompanyPage = () => {
+const getCompany = async () => {
+  const session = await getServerSession(authOptions);
+  const id = session?.user.id;
+
+  if (!id) redirect('/login');
+
+  const result = await prisma.company.findMany({
+    where: { userId: Number(id) },
+    include: { user: true },
+  });
+
+  return result;
+};
+
+const CompanyPage = async () => {
+  const listCompany = await getCompany();
+
   return (
     <div className="p-5">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center mb-5">
         <h2 className="font-bold text-lg">Perusahaan yang dimiliki</h2>
         <Link href="/company/create" className="btn btn-primary capitalize">tambah data</Link>
       </div>
+      <ListComponent datas={listCompany} />
     </div>
   );
 };

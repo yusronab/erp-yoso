@@ -302,7 +302,7 @@ const sidebar: SidebarItemProps[] = [
     {
         path: '/req-po',
         icon: <MdScheduleSend />,
-        name: 'Permintaan Pre-order',
+        name: 'Permintaan PO',
     },
     {
         path: '/check-item',
