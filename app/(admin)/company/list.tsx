@@ -7,20 +7,20 @@ const ListComponent = ({ datas }: { datas: any[] }) => {
         <div className="grid grid-cols-3">
             {datas.length !== 0 ? (
                 datas.map((item, i) => (
-                    <div key={i} className="p-3 rounded-md border border-gray-500 hover:shadow-md">
-                        <div className="flex gap-3">
+                    <div key={i} className="p-3 rounded-md border border-gray-300 hover:shadow-lg">
+                        <div className="flex">
                             <div className="avatar">
                                 <div className="w-8 rounded-full">
-                                    <Image src={item.image} alt="logo" />
+                                    <Image src={item.image} alt="logo" style={{ objectFit: "cover" }}/>
                                 </div>
                             </div>
-                            <div>
+                            <div className="ml-3">
                                 <p className="font-bold">{item.name}</p>
                                 <p className="text-sm text-gray-500 capitalize">{item.city}</p>
                             </div>
                         </div>
                         <p className="mt-8">
-                            {`Diperbarui : ${moment(item.updatedAt).startOf('day').fromNow()}`}
+                            {`Diperbarui : ${moment(item.updatedAt).startOf('hour').fromNow()}`}
                         </p>
                     </div>
                 ))

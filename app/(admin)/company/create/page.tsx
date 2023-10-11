@@ -81,14 +81,13 @@ const CreatePage = () => {
                         loading="lazy"
                         width={100}
                         height={100}
-                        style={{ objectFit: "cover", height: "100px" }}
+                        style={{ objectFit: "contain", height: "100px" }}
                     />
                     <UploadButton<OurFileRouter>
                         endpoint="imageUploader"
                         onClientUploadComplete={(res) => {
                             if (res) {
                                 setBody({ ...body, image: res[0].url })
-                                console.log(res);
                             }
                         }}
                         onUploadError={(error: Error) => {
