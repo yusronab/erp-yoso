@@ -2,7 +2,8 @@
 
 import { rupiah } from "@/utils/helper";
 import axios from "axios";
-import { ReactNode, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const ModalUpdate = ({
     data, showData, table
@@ -24,6 +25,8 @@ const ModalUpdate = ({
         if (input <= sisa) setNominal(e.target.value.replace(/[^0-9]/g, ''));
     }
 
+    const router = useRouter();
+
     const handleSubmit = async () => {
         setIsLoading(true);
 
@@ -33,6 +36,7 @@ const ModalUpdate = ({
 
         setIsLoading(false);
         setIsModalShow(false);
+        router.refresh();
         setNominal('');
     };
 

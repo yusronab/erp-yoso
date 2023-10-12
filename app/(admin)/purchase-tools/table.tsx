@@ -79,7 +79,7 @@ const Table = ({
                     {filteredData.slice(startIndex, endIndex).map((row, index) => {
                         const methodStyle = table.getStyle('jenis_pembayaran', row.paymentMethod, styleStatus);
                         const statusStyle = table.getStyle('status_pembayaran', row.paymentStatus, styleStatus);
-                        const purchase = table.getStyle('purchase', row.paymentStatus, styleStatus);
+                        const purchase = table.getStyle('purchase', row.isStatus, styleStatus);
 
                         return (
                             <tr className="hover" key={index}>
