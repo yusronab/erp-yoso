@@ -25,19 +25,16 @@ const ModalUpdate = ({
         if (input <= sisa) setNominal(e.target.value.replace(/[^0-9]/g, ''));
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         setIsLoading(true);
-        
-        axios.patch(`/api/${tableName}/${data.id}`, {
+
+        await axios.patch(`/api/${tableName}/${data.id}`, {
             tenor: Number(nominal),
         })
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err.response.data.message ?? 'Error patch process'))
-            .finally(() => {
-                setIsLoading(false);
-                setIsModalShow(false);
-                setNominal('');
-            })
+
+        setIsLoading(false);
+        setIsModalShow(false);
+        setNominal('');
     };
 
     return (
@@ -59,7 +56,7 @@ const ModalUpdate = ({
                                     <td className="text-right">{val} :</td>
                                     <td>
                                         {key === 'createdAt' ? new Date(data[key]).toLocaleDateString()
-                                            : key === 'total' ? rupiah(data[key]): data[key]}
+                                            : key === 'total' ? rupiah(data[key]) : data[key]}
                                     </td>
                                 </tr>
                             ))}

@@ -20,10 +20,7 @@ const ResetPage = () => {
         setIsLoading(true);
 
         axios.patch('/api/users/reset-password', { ...formData, newPassword: password.confirm })
-            .then(res => {
-                console.log('response', res.data);
-                onHandleNext();
-            })
+            .then(res => onHandleNext())
             .catch(error => console.log(error.response.data.message ?? "Error saat proses berlangsung"))
             .finally(() => setIsLoading(false))
     }

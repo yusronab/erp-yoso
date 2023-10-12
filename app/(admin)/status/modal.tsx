@@ -6,7 +6,7 @@ import { SyntheticEvent, useState } from 'react';
 import { FaEdit } from "react-icons/fa"
 
 const Modal = ({
-    data: initialState 
+    data: initialState
 }: {
     data?: any
 }) => {
@@ -28,21 +28,18 @@ const Modal = ({
     const onSubmitHandler = async (e: SyntheticEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        
+
         await axios.post('/api/status', data)
-            .then(res => console.log(res.data))
-            .catch(error => console.log('error', error.message))
-            .finally(() => {
-                setIsLoading(false);
-                setIsModalOpen(false);
-                router.refresh();
-            })
+
+        setIsLoading(false);
+        setIsModalOpen(false);
+        router.refresh();
     }
 
     const onUpdateHandler = async (e: SyntheticEvent) => {
         e.preventDefault();
         setIsLoading(true);
-        
+
         await axios.patch(`/api/status/${initialState.id}`, data)
             .then(res => console.log(res.data))
             .catch(error => console.log('error', error.message))

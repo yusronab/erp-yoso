@@ -162,12 +162,9 @@ const FormOrder = ({
         };
 
         axios.post('/api/order', body)
-            .then(res => console.log(res.data))
+            .then(res => router.push('/order'))
             .catch(err => console.log(err.response.data.message ?? 'Error saat POST berlangsung'))
-            .finally(() => {
-                setIsLoading(false);
-                router.push('/order');
-            });
+            .finally(() => setIsLoading(false));
     };
 
     const handleFilter = (selected: { id: number; name: string } | null, table: string) => {

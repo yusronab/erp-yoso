@@ -21,18 +21,15 @@ const ModalCreate = ({ tools }: { tools: any[] }) => {
 
     const modalHandler = () => setIsModalOpen(!isModalOpen);
 
-    const submitHandler = (e: SyntheticEvent) => {
+    const submitHandler = async (e: SyntheticEvent) => {
         e.preventDefault();
         setIsLoading(true);
 
-        axios.post('/api/tools-reduction', data)
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err.response.data.message ?? 'Post error: ' + data))
-            .finally(() => {
-                setIsLoading(false);
-                setIsModalOpen(false);
-                router.refresh();
-            })
+        await axios.post('/api/tools-reduction', data)
+
+        setIsLoading(false);
+        setIsModalOpen(false);
+        router.refresh();
     };
 
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +43,7 @@ const ModalCreate = ({ tools }: { tools: any[] }) => {
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedToolId = e.target.value;
         const selectedTool = tools.find((tool) => tool.id === Number(selectedToolId));
-        
+
         if (selectedTool) {
             setData({
                 ...data,
@@ -56,7 +53,7 @@ const ModalCreate = ({ tools }: { tools: any[] }) => {
             });
         }
     };
-    
+
     return (
         <div>
             <button
@@ -73,19 +70,19 @@ const ModalCreate = ({ tools }: { tools: any[] }) => {
                     <form onSubmit={submitHandler}>
                         <div className="form-control mb-4">
                             <label>Nama peralatan</label>
-                        <select
-                            name="name"
-                            onChange={handleSelectChange}
-                            value={data.name}
-                            className="select select-bordered"
-                        >
-                            <option value="" disabled>Pilih peralatan</option>
-                            {tools.map((tool, index) => (
-                                <option key={index} value={tool.id}>
-                                    {tool.name}
-                                </option>
-                            ))}
-                        </select>
+                            <select
+                                name="name"
+                                onChange={handleSelectChange}
+                                value={data.name}
+                                className="select select-bordered"
+                            >
+                                <option value="" disabled>Pilih peralatan</option>
+                                {tools.map((tool, index) => (
+                                    <option key={index} value={tool.id}>
+                                        {tool.name}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div className="form-control mb-4">
                             <label>Stok saat ini</label>

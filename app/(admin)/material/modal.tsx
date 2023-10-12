@@ -31,7 +31,7 @@ const UpdateModal = ({
         setData({ ...data, [e.target.name]: e.target.value })
     }
 
-    const onSubmitHandler = (e: SyntheticEvent) => {
+    const onSubmitHandler = async (e: SyntheticEvent) => {
         e.preventDefault();
         setLoading(true);
 
@@ -40,13 +40,10 @@ const UpdateModal = ({
             price: Number(data.price),
             isStatus: Number(data.isStatus)
         })
-            .then(res => console.log(res.data))
-            .catch(error => console.log(error.response.data.message ?? "Error saat proses berlangsung"))
-            .finally(() => {
-                setLoading(false);
-                setIsModalOpen(false);
-                router.refresh();
-            });
+
+        setLoading(false);
+        setIsModalOpen(false);
+        router.refresh();
     }
 
     return (

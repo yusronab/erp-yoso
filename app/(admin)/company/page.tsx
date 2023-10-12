@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import prisma from "../../lib/prisma";
 import ListComponent from "./list";
 
+export const dynamic = "force-dynamic";
+
 const getCompany = async () => {
   const session = await getServerSession(authOptions);
   const id = session?.user.id;

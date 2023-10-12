@@ -187,12 +187,9 @@ const FormOrder = ({
         };
         
         axios.post('/api/purchase-tools', body)
-            .then(res => console.log(res.data))
+            .then(res => router.push('/purchase-tools'))
             .catch(err => console.log(err.response.data.message ?? 'Error saat POST berlangsung'))
-            .finally(() => {
-                setIsLoading(false);
-                // router.push('/order');
-            });
+            .finally(() => setIsLoading(false));
     };
 
     return (

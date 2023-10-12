@@ -22,21 +22,18 @@ const ModalCreate = () => {
         setData({ ...data, [e.target.name]: e.target.value.replace(/[^0-9]/g, '') })
     }
 
-    const handleSubmit = (e: SyntheticEvent) => {
+    const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault();
         setLoading(true);
 
-        axios.post('/api/formula-utama', {
+        await axios.post('/api/formula-utama', {
             name: data.name,
             price: Number(data.price),
         })
-            .then(res => console.log(res.data))
-            .catch(error => console.log(error.response.data.message ?? "Error saat proses berlangsung"))
-            .finally(() => {
-                setLoading(false);
-                setShowModal(false);
-                router.refresh();
-            });
+
+        setLoading(false);
+        setShowModal(false);
+        router.refresh();
     }
 
     return (

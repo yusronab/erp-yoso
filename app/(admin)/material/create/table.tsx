@@ -81,12 +81,9 @@ const TableCreate = ({
         setIsLoading(true);
 
         axios.post('/api/material', data)
-            .then(res => console.log(res.data))
+            .then(res => router.push('/material'))
             .catch(error => console.log(error.response.data.message ?? "Error saat proses berlangsung"))
-            .finally(() => {
-                setIsLoading(false)
-                router.push('/material');
-            });
+            .finally(() => setIsLoading(false));
     }
 
     return (

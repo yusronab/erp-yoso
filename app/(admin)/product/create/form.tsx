@@ -44,12 +44,9 @@ const Form = ({ satuanUkuran }: { satuanUkuran: any[] }) => {
         setIsLoading(true);
         
         axios.post('/api/product', data)
-            .then(res => console.log(res.data))
+            .then(res => router.push('/product'))
             .catch(err => console.log(err.response.data.message ?? 'Error post: ' + data))
-            .finally(() => {
-                setIsLoading(false);
-                router.push('/product');
-            });
+            .finally(() => setIsLoading(false));
     };
 
     return (

@@ -9,7 +9,8 @@ const ListComponent = ({ datas }: { datas: any[] }) => {
             {datas.length !== 0 ? (
                 datas.map((item, i) => (
                     <div className="relative group">
-                        <div key={i} className="p-3 rounded-md border border-gray-300 hover:shadow-lg">
+                        <div key={i} className="p-3 rounded-md border border-gray-300 hover:shadow-lg
+                        transition-transform transform hover:transition-all hover:duration-200">
                             <div className="flex">
                                 <div className="avatar">
                                     <div className="w-8 h-8 rounded-full bg-gray-300">
@@ -22,7 +23,7 @@ const ListComponent = ({ datas }: { datas: any[] }) => {
                                 </div>
                             </div>
                             <p className="mt-8">
-                                {`Diperbarui : ${moment(item.updatedAt).startOf('hour').fromNow()}`}
+                                {`Diperbarui : ${moment(item.updatedAt).startOf('minute').fromNow()}`}
                             </p>
                         </div>
                         <Modal />

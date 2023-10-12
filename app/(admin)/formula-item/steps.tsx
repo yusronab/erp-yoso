@@ -66,7 +66,7 @@ const ModalSteps = ({ data, formulaId }: { data: any[], formulaId: number }) => 
             formulaItemId: Number(formulaId),
             divisiId: Number(divisiId)
         })
-            .then(res => console.log(res.data))
+            .then()
             .catch(error => console.log(error.response.data.message ?? "Error saat proses berlangsung"))
             .finally(() => {
                 setLoading(false);

@@ -13,9 +13,7 @@ const ModalQrcode = ({
 
     const handleModal = () => setShowModal(!showModal);
 
-    useEffect(() => {
-        setData(listItem)
-    }, [listItem]);
+    useEffect(() => setData(listItem), [listItem]);
 
     return (
         <div>

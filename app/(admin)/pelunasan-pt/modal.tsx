@@ -24,19 +24,16 @@ const ModalUpdate = ({
         if (input <= sisa) setNominal(e.target.value.replace(/[^0-9]/g, ''));
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         setIsLoading(true);
 
-        axios.patch(`/api/${table}/${data.id}`, {
+        await axios.patch(`/api/${table}/${data.id}`, {
             tenor: Number(nominal),
         })
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err.response.data.message ?? 'Error patch process'))
-            .finally(() => {
-                setIsLoading(false);
-                setIsModalShow(false);
-                setNominal('');
-            })
+
+        setIsLoading(false);
+        setIsModalShow(false);
+        setNominal('');
     };
 
     return (

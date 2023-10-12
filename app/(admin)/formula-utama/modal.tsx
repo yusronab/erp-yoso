@@ -67,7 +67,7 @@ const ModalItem = ({ data, formulaId }: { data: any[], formulaId: number }) => {
             formulaUtamaId: Number(formulaId),
             formulaItemId: Number(id)
         })
-            .then(res => console.log(res.data))
+            .then()
             .catch(error => console.log(error.response.data.message ?? "Error saat proses berlangsung"))
             .finally(() => {
                 setLoading(false);
