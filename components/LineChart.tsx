@@ -36,22 +36,22 @@ const LineChart = ({
         backgroundColor: (context: ScriptableContext<"line">) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-            gradient.addColorStop(0, "rgba(250,174,50,1)");
-            gradient.addColorStop(1, "rgba(250,174,50,0)");
+            gradient.addColorStop(0, "rgba(78,115,223,1)");
+            gradient.addColorStop(1, "rgba(78,115,223,0)");
             return gradient;
         },
-        borderColor: "rgba(75,192,192,1)"
+        borderColor: "rgba(78,115,223,1)"
     }))
 
     return (
         <div className="my-5">
             <Line
+                title="Statistik"
                 data={{
                     labels: labels,
                     datasets: dataWillDisplay,
                 }}
                 options={{
-                    maintainAspectRatio: false,
                     responsive: true,
                     elements: {
                         line: {
@@ -73,7 +73,6 @@ const LineChart = ({
                         title: {
                             display: true,
                             align: 'start',
-                            text: 'Statistik',
                             position: 'top',
                         },
                         legend: {
