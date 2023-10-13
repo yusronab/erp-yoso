@@ -12,7 +12,16 @@ const Dashboard = () => {
     "2023-07",
   ];
 
-  const datasets = [100, 120, 115, 134, 168, 132, 200];
+  const datasets = [
+    {
+      label: "2023-01",
+      data: [100, 120, 115, 134, 168, 132, 200],
+      backgroundColor: "#4e73df",
+      borderColor: "#4e73df",
+      borderWidth: 1,
+      fill: true,
+    },
+  ];
 
   return (
     <div className="p-5">

@@ -7,6 +7,8 @@ import {
     Tooltip,
     PointElement,
     LineElement,
+    Filler,
+    Legend,
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
@@ -16,26 +18,26 @@ ChartJS.register(
     LinearScale,
     PointElement,
     LineElement,
-    Tooltip
+    Tooltip,
+    Filler,
+    Legend,
 );
 
 const LineChart = ({
     labels, datasets,
 }: {
     labels: string[];
-    datasets: number[];
+    datasets: any[];
 }) => {
     return (
-        <div>
+        <div className="my-5">
             <Line
                 data={{
                     labels: labels,
-                    datasets: [
-                        {
-                            data: datasets,
-                            backgroundColor: "purple",
-                        },
-                    ],
+                    datasets: datasets,
+                }}
+                options={{
+                    responsive: true,
                 }}
             />
         </div>
