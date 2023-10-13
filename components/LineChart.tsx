@@ -9,6 +9,7 @@ import {
     LineElement,
     Filler,
     Legend,
+    ScriptableContext,
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
@@ -37,7 +38,38 @@ const LineChart = ({
                     datasets: datasets,
                 }}
                 options={{
+                    maintainAspectRatio: false,
                     responsive: true,
+                    elements: {
+                        line: {
+                            borderJoinStyle: 'round',
+                            tension: 0.35,
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: true
+                            }
+                        }
+                    },
+                    plugins: {
+                        filler: {
+                            propagate: false
+                        },
+                        title: {
+                            display: true,
+                            align: 'start',
+                            text: 'Statistik',
+                            position: 'top',
+                        },
+                        legend: {
+                            align: 'end',
+                        }
+                    },
+                    interaction: {
+                        intersect: true
+                    }
                 }}
             />
         </div>
