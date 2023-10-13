@@ -1,6 +1,5 @@
 import LineChart from "@/components/LineChart";
 import ListDashboardCard from "@/components/ListDashboardCard";
-import { ScriptableContext } from "chart.js";
 
 const Dashboard = () => {
   const labels = [
@@ -17,15 +16,6 @@ const Dashboard = () => {
     {
       label: "Pembelian Alat",
       data: [100, 120, 115, 134, 168, 132, 200],
-      fill: "start",
-      backgroundColor: (context: ScriptableContext<"line">) => {
-        const ctx = context.chart.ctx;
-        const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-        gradient.addColorStop(0, "rgba(250,174,50,1)");
-        gradient.addColorStop(1, "rgba(250,174,50,0)");
-        return gradient;
-      },
-      borderColor: "rgba(75,192,192,1)"
     },
   ];
 

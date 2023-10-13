@@ -27,15 +27,28 @@ ChartJS.register(
 const LineChart = ({
     labels, datasets,
 }: {
-    labels: string[];
-    datasets: any[];
+    labels: string[]; datasets: any[];
 }) => {
+    const dataWillDisplay = datasets.map(item => ({
+        label: item.label,
+        data: item.data,
+        fill: "start",
+        backgroundColor: (context: ScriptableContext<"line">) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, "rgba(250,174,50,1)");
+            gradient.addColorStop(1, "rgba(250,174,50,0)");
+            return gradient;
+        },
+        borderColor: "rgba(75,192,192,1)"
+    }))
+
     return (
         <div className="my-5">
             <Line
                 data={{
                     labels: labels,
-                    datasets: datasets,
+                    datasets: dataWillDisplay,
                 }}
                 options={{
                     maintainAspectRatio: false,
