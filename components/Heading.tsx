@@ -2,20 +2,13 @@
 
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
-import { HiMiniBars3CenterLeft } from 'react-icons/hi2';
 import { MdPerson, MdExitToApp } from "react-icons/md";
 
-const Heading = ({ toggleMobileSidebar }: { toggleMobileSidebar: () => void }) => {
+const Heading = () => {
     const { data, status } = useSession();
 
     return (
-        <header className="bg-[#4e73df] flex md:justify-end justify-between">
-            <button
-                className="md:hidden block p-2 text-white hover:text-gray-800 focus:outline-none"
-                onClick={toggleMobileSidebar}
-            >
-                <HiMiniBars3CenterLeft />
-            </button>
+        <header className="bg-[#4e73df] flex md:justify-end justify-between w-full">
             <details className="dropdown dropdown-end">
                 <summary className="btn my-3 btn-ghost after:bg-white text-white relative
                 hover:bg-transparent flex-col text-xs items-start rounded-none after:w-[2px] 

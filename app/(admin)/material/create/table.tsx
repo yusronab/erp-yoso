@@ -95,7 +95,7 @@ const TableCreate = ({
                 Tambah baris
             </button>
 
-            <table className="table bordered my-10 table-pin-rows table-pin-cols">
+            <table className="table bordered my-10">
                 <thead>
                     <tr>
                         <th>Nama Material</th>

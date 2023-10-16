@@ -8,7 +8,7 @@ import { HiChevronLeft } from "react-icons/hi2";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const Sidebar = ({ isMobileSidebarOpen }: { isMobileSidebarOpen: boolean }) => {
+const Sidebar = () => {
     const location = usePathname();
 
     const [menuOpen, setMenuOpen] = useState(true);
@@ -17,11 +17,11 @@ const Sidebar = ({ isMobileSidebarOpen }: { isMobileSidebarOpen: boolean }) => {
         <motion.aside
             initial={{ width: 0 }}
             animate={{
-                width: isMobileSidebarOpen ? '350px' : menuOpen ? '350px' : !menuOpen ? '50px' : 0,
+                width: menuOpen ? '320px' : 50,
             }}
             className={`bg-[#4e73df] pb-10`}
         >
-            <div className="flex relative items-center h-16">
+            <div className={`flex relative items-center h-16 ${menuOpen ? 'justify-between' : 'justify-end'}`}>
                 <Link href="/dashboard" className={`text-white font-bold tracking-[2px] text-lg px-5
                 w-full ${!menuOpen && 'hidden'}`}
                 >
@@ -32,8 +32,7 @@ const Sidebar = ({ isMobileSidebarOpen }: { isMobileSidebarOpen: boolean }) => {
                     size={26}
                     strokeWidth={1.1}
                     cursor="pointer"
-                    className={`${!menuOpen && 'rotate-180'} absolute right-0 top-1/2 -translate-y-1/2 
-                    duration-200 border-white rounded-full border-2`}
+                    className={`${!menuOpen && 'rotate-180'} duration-200 border-white rounded-full border-2`}
                     onClick={() => setMenuOpen(!menuOpen)}
                 />
             </div>
@@ -49,15 +48,17 @@ const Sidebar = ({ isMobileSidebarOpen }: { isMobileSidebarOpen: boolean }) => {
                                 menuOpen={menuOpen}
                             />
                         ) : (
-                            <Link href={item.path} className={`flex items-center gap-4 hover:text-white
-                        ${location === item.path ? 'text-white font-semibold' : 'text-slate-300'}`}>
-                                <span className="py-1">{item.icon}</span>
-                                <span className={`${!menuOpen && 'hidden'}`}>{item.name}</span>
-                            </Link>
+                            <div className={!menuOpen ? 'tooltip' : ''} data-tooltip={item.name}>
+                                <Link href={item.path} className={`flex items-center gap-4 hover:text-white
+                                ${location === item.path ? 'text-white font-semibold' : 'text-slate-300'}`}>
+                                    <span className="py-1">{item.icon}</span>
+                                    <span className={`${!menuOpen && 'hidden'}`}>{item.name}</span>
+                                </Link>
+                            </div>
                         )}
                     </div>
                     {index === 0 || index === 7 || index === 11 ? (
-                        <hr className="my-2 h-px border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
+                        <hr className="my-2 h-px border-t-0 text-slate-300 opacity-100 dark:opacity-50 px-5" />
                     ) : ('')}
                 </>
             ))}

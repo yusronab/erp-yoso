@@ -46,7 +46,7 @@ const LineChart = ({
     }))
 
     return (
-        <div className="my-5">
+        <div className="my-5 w-full">
             <Line
                 title="Statistik"
                 data={{

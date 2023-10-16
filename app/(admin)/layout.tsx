@@ -1,21 +1,16 @@
-"use client";
-
-import Heading from "@/components/Heading"
-import Sidebar from "@/components/Sidebar"
-import { useState } from "react";
+import Heading from "@/components/Heading";
+import Sidebar from "@/components/Sidebar";
 
 export default function DashboardLayout({
     children,
 }: {
     children: React.ReactNode
 }) {
-    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-
     return (
         <section className="flex">
-            <Sidebar isMobileSidebarOpen={isMobileSidebarOpen} />
+            <Sidebar />
             <div className="flex-1 overflow-x-auto">
-                <Heading toggleMobileSidebar={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)} />
+                <Heading />
                 {children}
             </div>
         </section>
