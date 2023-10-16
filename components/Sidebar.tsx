@@ -19,7 +19,7 @@ const Sidebar = () => {
             animate={{
                 width: menuOpen ? 260 : 50,
             }}
-            className={`bg-[#4e73df] pb-10`}
+            className={`bg-[#4e73df] pb-10 shadow-lg`}
         >
             <div className={`flex relative items-center h-16 ${menuOpen ? 'justify-between': 'justify-center'}`}>
                 <Link href="/dashboard" className={`text-white font-bold tracking-[2px] text-lg px-5
