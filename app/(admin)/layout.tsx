@@ -1,3 +1,5 @@
+"use client";
+
 import Heading from "@/components/Heading"
 import Sidebar from "@/components/Sidebar"
 import { useState } from "react";
