@@ -10,6 +10,7 @@ import {
     Filler,
     Legend,
     ScriptableContext,
+    Title,
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
@@ -22,6 +23,7 @@ ChartJS.register(
     Tooltip,
     Filler,
     Legend,
+    Title,
 );
 
 const LineChart = ({
@@ -37,7 +39,7 @@ const LineChart = ({
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, 200);
             gradient.addColorStop(0, "rgba(78,115,223,1)");
-            gradient.addColorStop(1, "rgba(78,115,223,0)");
+            gradient.addColorStop(1, "rgba(78,115,223,0.5)");
             return gradient;
         },
         borderColor: "rgba(78,115,223,1)"

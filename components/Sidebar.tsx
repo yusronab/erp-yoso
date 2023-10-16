@@ -16,9 +16,9 @@ const Sidebar = () => {
     return (
         <motion.aside
             animate={{
-                width: menuOpen ? "fit-content" : "50px",
+                width: menuOpen ? "350px" : "50px",
             }}
-            className={`bg-[#4e73df]`}
+            className={`bg-[#4e73df] pb-10`}
         >
             <div className="flex relative items-center h-16">
                 <Link href="/dashboard" className={`text-white font-bold tracking-[2px] text-lg px-5
@@ -37,27 +37,31 @@ const Sidebar = () => {
                 />
             </div>
             {sidebar.map((item, index) => (
-                <div key={index} className="py-3 px-5">
-                    {item.submenu ? (
-                        <SidebarSubmenu
-                            name={item.name}
-                            icon={item.icon}
-                            path={item.path}
-                            submenu={item.submenu}
-                            menuOpen={menuOpen}
-                        />
-                    ) : (
-                        <Link href={item.path} className={`flex items-center gap-4 hover:text-white
+                <>
+                    <div key={index} className="py-3 px-5">
+                        {item.submenu ? (
+                            <SidebarSubmenu
+                                name={item.name}
+                                icon={item.icon}
+                                path={item.path}
+                                submenu={item.submenu}
+                                menuOpen={menuOpen}
+                            />
+                        ) : (
+                            <Link href={item.path} className={`flex items-center gap-4 hover:text-white
                         ${location === item.path ? 'text-white font-semibold' : 'text-slate-300'}`}>
-                            <span className="py-1">{item.icon}</span>
-                            <span className={`${!menuOpen && 'hidden'}`}>{item.name}</span>
-                        </Link>
-                    )}
-                </div>
-            ))
-            }
+                                <span className="py-1">{item.icon}</span>
+                                <span className={`${!menuOpen && 'hidden'}`}>{item.name}</span>
+                            </Link>
+                        )}
+                    </div>
+                    {index === 0 || index === 7 || index === 11 ? (
+                        <hr className="my-12 h-px border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
+                    ) : ('')}
+                </>
+            ))}
         </motion.aside >
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;
