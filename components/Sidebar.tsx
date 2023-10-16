@@ -17,11 +17,11 @@ const Sidebar = () => {
         <motion.aside
             initial={{ width: 0 }}
             animate={{
-                width: menuOpen ? '320px' : 50,
+                width: menuOpen ? 260 : 50,
             }}
             className={`bg-[#4e73df] pb-10`}
         >
-            <div className={`flex relative items-center h-16 ${menuOpen ? 'justify-between' : 'justify-end'}`}>
+            <div className={`flex relative items-center h-16 ${menuOpen ? 'justify-between': 'justify-center'}`}>
                 <Link href="/dashboard" className={`text-white font-bold tracking-[2px] text-lg px-5
                 w-full ${!menuOpen && 'hidden'}`}
                 >
@@ -48,17 +48,15 @@ const Sidebar = () => {
                                 menuOpen={menuOpen}
                             />
                         ) : (
-                            <div className={!menuOpen ? 'tooltip' : ''} data-tooltip={item.name}>
-                                <Link href={item.path} className={`flex items-center gap-4 hover:text-white
-                                ${location === item.path ? 'text-white font-semibold' : 'text-slate-300'}`}>
-                                    <span className="py-1">{item.icon}</span>
-                                    <span className={`${!menuOpen && 'hidden'}`}>{item.name}</span>
-                                </Link>
-                            </div>
+                            <Link href={item.path} className={`flex items-center gap-4 hover:text-white
+                            ${location === item.path ? 'text-white font-semibold' : 'text-slate-300'}`}>
+                                <span className="py-1">{item.icon}</span>
+                                <span className={`${!menuOpen && 'hidden'}`}>{item.name}</span>
+                            </Link>
                         )}
                     </div>
                     {index === 0 || index === 7 || index === 11 ? (
-                        <hr className="my-2 h-px border-t-0 text-slate-300 opacity-100 dark:opacity-50 px-5" />
+                        <hr className="my-2 h-px border-t-0 bg-slate-300 opacity-100 dark:opacity-50 px-5"/>
                     ) : ('')}
                 </>
             ))}

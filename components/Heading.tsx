@@ -8,7 +8,7 @@ const Heading = () => {
     const { data, status } = useSession();
 
     return (
-        <header className="bg-[#4e73df] flex md:justify-end justify-between w-full">
+        <header className="bg-[#4e73df] flex justify-end w-full">
             <details className="dropdown dropdown-end">
                 <summary className="btn my-3 btn-ghost after:bg-white text-white relative
                 hover:bg-transparent flex-col text-xs items-start rounded-none after:w-[2px] 
