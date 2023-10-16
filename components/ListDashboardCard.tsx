@@ -2,7 +2,7 @@ import DashboardCard from "./DashboardCard";
 
 const ListDashboardCard = () => {
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 py-5 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 py-5 gap-5 w-full">
             <DashboardCard
                 title="Total Sales Order"
                 total="4,152,783,787"

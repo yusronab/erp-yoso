@@ -9,7 +9,7 @@ const Heading = ({ toggleMobileSidebar }: { toggleMobileSidebar: () => void }) =
     const { data, status } = useSession();
 
     return (
-        <header className="bg-[#4e73df] flex justify-between">
+        <header className="bg-[#4e73df] flex md:justify-end justify-between">
             <button
                 className="md:hidden block p-2 text-white hover:text-gray-800 focus:outline-none"
                 onClick={toggleMobileSidebar}

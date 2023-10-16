@@ -14,7 +14,7 @@ export default function DashboardLayout({
     return (
         <section className="flex">
             <Sidebar isMobileSidebarOpen={isMobileSidebarOpen} />
-            <div className="flex-1">
+            <div className="flex-1 overflow-x-auto">
                 <Heading toggleMobileSidebar={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)} />
                 {children}
             </div>

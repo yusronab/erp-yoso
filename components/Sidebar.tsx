@@ -17,7 +17,7 @@ const Sidebar = ({ isMobileSidebarOpen }: { isMobileSidebarOpen: boolean }) => {
         <motion.aside
             initial={{ width: 0 }}
             animate={{
-                width: isMobileSidebarOpen ? '300px' : menuOpen ? '350px' : '50px',
+                width: isMobileSidebarOpen ? '350px' : menuOpen ? '350px' : !menuOpen ? '50px' : 0,
             }}
             className={`bg-[#4e73df] pb-10`}
         >
