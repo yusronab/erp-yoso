@@ -4,19 +4,20 @@ import sidebar from "@/utils/sidebar"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import SidebarSubmenu from "./SidebarSubmenu"
-import { HiChevronLeft, HiBars3 } from "react-icons/hi2";
+import { HiChevronLeft } from "react-icons/hi2";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-const Sidebar = () => {
+const Sidebar = ({ isMobileSidebarOpen }: { isMobileSidebarOpen: boolean }) => {
     const location = usePathname();
 
     const [menuOpen, setMenuOpen] = useState(true);
 
     return (
         <motion.aside
+            initial={{ width: 0 }}
             animate={{
-                width: menuOpen ? "350px" : "50px",
+                width: isMobileSidebarOpen ? '300px' : menuOpen ? '350px' : '50px',
             }}
             className={`bg-[#4e73df] pb-10`}
         >
@@ -32,7 +33,7 @@ const Sidebar = () => {
                     strokeWidth={1.1}
                     cursor="pointer"
                     className={`${!menuOpen && 'rotate-180'} absolute right-0 top-1/2 -translate-y-1/2 
-                    -mr-[15%] duration-200`}
+                    duration-200 border-white rounded-full border-2`}
                     onClick={() => setMenuOpen(!menuOpen)}
                 />
             </div>
@@ -56,7 +57,7 @@ const Sidebar = () => {
                         )}
                     </div>
                     {index === 0 || index === 7 || index === 11 ? (
-                        <hr className="my-12 h-px border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
+                        <hr className="my-2 h-px border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
                     ) : ('')}
                 </>
             ))}
