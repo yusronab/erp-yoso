@@ -1,9 +1,9 @@
 const Loading = () => {
     return (
-        <div className="background-custom">
+        <div className="w-full h-full flex justify-center items-center">
             <div className="loader">
-                <span>Yoso</span>
-                <span>Yoso </span>
+                <span>Tunggu sebentar</span>
+                <span>Tunggu sebentar</span>
             </div>
         </div>
     );
