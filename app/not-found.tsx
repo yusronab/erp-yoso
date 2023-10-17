@@ -3,12 +3,10 @@ import { MdFindInPage } from "react-icons/md";
 
 const Page = () => {
     return (
-        <div className="h-full w-full flex flex-col gap-5 justify-center items-center">
-            <MdFindInPage size={32} color="#4e73df" />
-            <p className="font-bold text-2xl text-[#4e73df]">
-                Halaman tidak ditemukan!
-            </p>
-            <Link href="/" className="hover:underline hover:text-[#4e73df] transition-all duration-200">
+        <div className="h-screen w-screen flex flex-col justify-center items-center bg-[#24344c]">
+            <h1 className="text-center text-white text-[100px] font-extrabold mb-0">404</h1>
+            <p className="text-white mb-6"><MdFindInPage /> Halaman tidak ditemukan!</p>
+            <Link href="/" className="btn btn-outline btn-warning lowercase">
                 kembali
             </Link>
         </div>
