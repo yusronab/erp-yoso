@@ -18,6 +18,7 @@
 
 .loader {
   position: relative;
+  margin-top: 8%;
 }
 
 .loader span {
